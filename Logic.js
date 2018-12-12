@@ -5,6 +5,7 @@ var paddle = null;
 var ballX = 50;
 var ballY = 50;
 var mouseX=0;
+var paddleX=0;
 
 const BALL_RADIUS = 5;
 const PADDLE_HEIGHT = 15;
@@ -18,7 +19,10 @@ window.onload = function (e) {
 
  canvas.addEventListener('mousemove', function(evt) {
         var mousePos = getMousePos(canvas, evt);
-        movePaddle(mousePos.x);
+        if(mousePos.x>PADDLE_WIDTH/2 && mousePos.x<canvas.width-PADDLE_WIDTH/2)
+        {
+       paddleX=mousePos.x -PADDLE_WIDTH/2;
+        }
       }, false);
 
    
@@ -67,7 +71,7 @@ window.onload = function (e) {
             moveBall(ballX, ballY);
            }
         },
-        25
+        15
     );
 
 };
@@ -89,7 +93,7 @@ function moveBall(x,y) {
  
    
   context.fillStyle = 'black';
-    context.fillRect(0, canvas.height - PADDLE_HEIGHT, PADDLE_WIDTH, PADDLE_HEIGHT);
+    context.fillRect(paddleX, canvas.height - PADDLE_HEIGHT, PADDLE_WIDTH, PADDLE_HEIGHT);
  
     context.beginPath();
     context.arc(x,y, BALL_RADIUS,0,Math.PI*2,false);
