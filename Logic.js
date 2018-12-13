@@ -12,10 +12,11 @@ const PADDLE_HEIGHT = 15;
 const PADDLE_WIDTH = 150;
 const MIN_HEIGHT_TO_CHECK = PADDLE_HEIGHT + 5;
 var flagToCheck = true;
+var ballColor='green';
+
 
 window.onload = function (e) {
-    canvas = document.getElementById("canvasGame");
-    context = canvas.getContext('2d');
+    initializeGame();
 
     // context.beginPath();
 
@@ -28,7 +29,7 @@ window.onload = function (e) {
 
 
     //Move Ball
-    setInterval(
+   var intrvl= setInterval(
         function () {
 
 
@@ -42,10 +43,15 @@ window.onload = function (e) {
                 if (flagToCheck) {
                     if (Math.abs(ballX) > paddleX && Math.abs(ballX) < paddleX + PADDLE_WIDTH) {
                         score++;
+                        ballColor=getRandomColor();
                         flagToCheck = false;
                     }
                     else {
                         alert('lost');
+                        context.clearRect(0, 0, canvas.width, canvas.height);
+                       //initializeGame();
+                       clearInterval(intrvl);
+                       
                     }
 
                     
@@ -110,14 +116,18 @@ function moveBall(x, y) {
     context.fillRect(0, 0, 700, 700);
 
 
-    context.fillStyle = 'black';
-    context.fillRect(paddleX, canvas.height - PADDLE_HEIGHT, PADDLE_WIDTH, PADDLE_HEIGHT);
+  
 
     context.beginPath();
+    context.fillStyle=ballColor;
     context.arc(x, y, BALL_RADIUS, 0, Math.PI * 2, false);
+ context.fill();
+
+      context.fillStyle = 'black';
+    context.fillRect(paddleX, canvas.height - PADDLE_HEIGHT, PADDLE_WIDTH, PADDLE_HEIGHT);
 
 
-    context.fill();
+   
 
 }
 
@@ -126,4 +136,20 @@ function movePaddle(x) {
     context.fillRect(x, canvas.height - PADDLE_HEIGHT, PADDLE_WIDTH, PADDLE_HEIGHT);
 
 
+}
+
+
+function initializeGame()
+{
+     canvas = document.getElementById("canvasGame");
+    context = canvas.getContext('2d');
+}
+
+function getRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
 }
