@@ -7,7 +7,7 @@ var ballY = 50;
 var mouseX = 0;
 var paddleX = 0;
 var score = 0;
-const BALL_RADIUS = 5;
+const BALL_RADIUS = 7;
 const PADDLE_HEIGHT = 15;
 const PADDLE_WIDTH = 150;
 const MIN_HEIGHT_TO_CHECK = PADDLE_HEIGHT + 5;
@@ -17,7 +17,7 @@ var ballColor='green';
 
 window.onload = function (e) {
     initializeGame();
-
+drawRandomRectangle();
     // context.beginPath();
 
     canvas.addEventListener('mousemove', function (evt) {
@@ -112,8 +112,10 @@ function getMousePos(canvas, evt) {
 function moveBall(x, y) {
 
     //Create Paddle
+    context.globalAlpha=0.3;
     context.fillStyle = 'white';
     context.fillRect(0, 0, 700, 700);
+    context.globalAlpha=1;
 
 
   
@@ -126,7 +128,7 @@ function moveBall(x, y) {
       context.fillStyle = 'black';
     context.fillRect(paddleX, canvas.height - PADDLE_HEIGHT, PADDLE_WIDTH, PADDLE_HEIGHT);
 
-
+drawRandomRectangle();
    
 
 }
@@ -152,4 +154,26 @@ function getRandomColor() {
     color += letters[Math.floor(Math.random() * 16)];
   }
   return color;
+}
+
+
+
+
+
+function drawRandomRectangle()
+{
+
+for(var i=1;i<10;i++)
+{
+     context.beginPath();
+    context.rect(i+10, i+100, 100, 100);
+    context.fillStyle = 'black';
+    context.closePath();
+    context.fill();
+
+    //    context.fillStyle = 'black';
+    // context.fillRect(i, 200, PADDLE_WIDTH, PADDLE_HEIGHT);
+
+}
+
 }
