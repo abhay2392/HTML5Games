@@ -14,7 +14,7 @@ const PADDLE_HEIGHT = 15;
 const PADDLE_WIDTH = 150;
 const MIN_HEIGHT_TO_CHECK = PADDLE_HEIGHT + 5;
 var flagToCheck = true;
-var ballColor = 'green';
+var ballColor = '';
 const OBSTACLE_HEIGHT = 40;
 const OBSTACLE_WIDTH = 50;
 var obstacleMap = [];
@@ -154,6 +154,8 @@ function movePaddle(x) {
 function initializeGame() {
     canvas = document.getElementById("canvasGame");
     context = canvas.getContext('2d');
+    setRandomColor();
+    ballColor=taggedcolor;
 }
 
 function setRandomColor() {
@@ -166,6 +168,7 @@ function setRandomColor() {
 }
 
 function collisionCheck(x, y) {
+   
     obstacleMap.forEach(function (item) {
         if (x > item.ox && x < item.ox + OBSTACLE_WIDTH) {
             if (y > item.oy && y < item.oy + OBSTACLE_HEIGHT) {
