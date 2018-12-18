@@ -20,6 +20,8 @@ const OBSTACLE_HEIGHT = 40;
 const OBSTACLE_WIDTH = 50;
 var obstacleMap = [];
 var  taggedcolor = '#';
+var paddelStrikeMusic;
+var bgMusic;
 
 
 window.onload = function (e) {
@@ -52,6 +54,7 @@ window.onload = function (e) {
                         score++;
                         setRandomColor();
                         ballColor = taggedcolor;
+                        paddelStrikeMusic.play();
                         flagToCheck = false;
                     }
                     else {
@@ -159,6 +162,9 @@ function initializeGame() {
     context = canvas.getContext('2d');
     setRandomColor();
     ballColor=taggedcolor;
+    //paddelStrikeMusic=new sound("assets/bounce.mp3");
+    bgMusic=new sound("assets/jngbell.mid");
+    bgMusic.play();
   
 }
 
@@ -178,6 +184,7 @@ function collisionCheck(x, y) {
         if (x > item.ox && x < item.ox + OBSTACLE_WIDTH) {
             if (y > item.oy && y < item.oy + OBSTACLE_HEIGHT) {
                 drawObstacle(item.ox,item.oy,taggedcolor);
+                
             }
         }
     })
@@ -195,7 +202,7 @@ function drawRandomRectangle() {
 
             var obstacle = { ox: j * 100, oy: i * 70 };
             obstacleMap.push(obstacle);
-          drawObstacle(j*100,i*70,'black');
+          drawObstacle(j*100,i*70,'white');
         }
 
 
@@ -216,4 +223,20 @@ function drawObstacle(x,y,color)
             context.stroke();
             context.fill();
 
+}
+
+
+function sound(src) {
+    this.sound = document.createElement("audio");
+    this.sound.src = src;
+    this.sound.setAttribute("preload", "auto");
+    this.sound.setAttribute("controls", "none");
+    this.sound.style.display = "none";
+    document.body.appendChild(this.sound);
+    this.play = function(){
+        this.sound.play();
+    }
+    this.stop = function(){
+        this.sound.pause();
+    }    
 }
