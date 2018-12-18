@@ -249,14 +249,15 @@ function drawObstacle()
 
      obstacleMap.forEach(function (item) {
       
-  context.beginPath();
-            context.rect(item.ox,item.oy, OBSTACLE_WIDTH, OBSTACLE_HEIGHT);
-            context.fillStyle = "white";
-            context.closePath();
-            context.strokeStyle='grey';
-            context.stroke();
-            context.fill();
-              //  drawImage(item.ox,item.oy,item.card);
+//   context.beginPath();
+//             context.rect(item.ox,item.oy, OBSTACLE_WIDTH, OBSTACLE_HEIGHT);
+//             context.fillStyle = "white";
+//             context.closePath();
+//             context.strokeStyle='grey';
+//             context.stroke();
+//             context.fill();
+
+                drawImage(item.ox,item.oy,'gift');
               // 
                 
            
