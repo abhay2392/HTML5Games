@@ -16,12 +16,13 @@ const MIN_HEIGHT_TO_CHECK = PADDLE_HEIGHT + 5;
 const PADDLE_COLOR='white';
 var flagToCheck = true;
 var ballColor = '';
-const OBSTACLE_HEIGHT = 40;
+const OBSTACLE_HEIGHT = 50;
 const OBSTACLE_WIDTH = 50;
 var obstacleMap = [];
 var  taggedcolor = '#';
 var paddelStrikeMusic;
 var bgMusic;
+var cardMap=[1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5];
 
 
 window.onload = function (e) {
@@ -148,7 +149,9 @@ function moveBall(x, y) {
     context.fillStyle = PADDLE_COLOR;
     context.fillRect(paddleX, canvas.height - PADDLE_HEIGHT, PADDLE_WIDTH, PADDLE_HEIGHT);
 
-   drawRandomRectangle();
+  //drawRandomRectangle();
+  drawObstacle();
+   
    collisionCheck(x, y);
 
 
@@ -189,7 +192,9 @@ function collisionCheck(x, y) {
     obstacleMap.forEach(function (item) {
         if (x > item.ox && x < item.ox + OBSTACLE_WIDTH) {
             if (y > item.oy && y < item.oy + OBSTACLE_HEIGHT) {
-                drawObstacle(item.ox,item.oy,taggedcolor);
+
+                drawImage(item.ox,item.oy,item.card);
+              // 
                 
             }
         }
@@ -197,18 +202,28 @@ function collisionCheck(x, y) {
 
 }
 
-
+function shuffleArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+}
 
 function drawRandomRectangle() {
 
-
-
+shuffleArray(cardMap);
+console.log(cardMap);
+var count=0;
     for (var i = 1; i <= 5; i++) {
         for (var j = 1; j <= 5; j++) {
-
-            var obstacle = { ox: j * 100, oy: i * 70 };
+ 
+ console.log('data'+cardMap[count])
+            var obstacle = { ox: j * 100, oy: i * 70 , card:cardMap[count] };
             obstacleMap.push(obstacle);
           drawObstacle(j*100,i*70,'white');
+          count++;
         }
 
 
@@ -219,16 +234,25 @@ function drawRandomRectangle() {
 
 }
 
-function drawObstacle(x,y,color)
+function drawObstacle()
 {
-      context.beginPath();
-            context.rect(x,y, OBSTACLE_WIDTH, OBSTACLE_HEIGHT);
-            context.fillStyle = color;
+
+     obstacleMap.forEach(function (item) {
+      
+  context.beginPath();
+            context.rect(item.ox,item.oy, OBSTACLE_WIDTH, OBSTACLE_HEIGHT);
+            context.fillStyle = "white";
             context.closePath();
             context.strokeStyle='grey';
             context.stroke();
             context.fill();
+              //  drawImage(item.ox,item.oy,item.card);
+              // 
+                
+           
+    
 
+     });
 }
 
 
@@ -254,4 +278,16 @@ function sound(src,flag) {
         this.sound.currentTime=0;
         this.sound.play();
     }
+}
+
+function drawImage(x,y,card)
+{
+    //console.log(i++);
+      var imageObj = new Image();
+       imageObj.src = "assets/"+card+".png";
+               
+        context.drawImage(imageObj, x, y,OBSTACLE_WIDTH,OBSTACLE_HEIGHT);
+     
+                
+            
 }
