@@ -23,7 +23,6 @@ var  taggedcolor = '#';
 var paddelStrikeMusic;
 var bgMusic;
 var cardMap=[1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5];
-var cardMap1=[1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5];
 var paytable=[];
 
 window.onload = function (e) {
@@ -194,12 +193,17 @@ function setRandomColor() {
 
 function collisionCheck(x, y) {
    
+   var flag=true;
     obstacleMap.forEach(function (item) {
         if (x > item.ox && x < item.ox + OBSTACLE_WIDTH) {
             if (y > item.oy && y < item.oy + OBSTACLE_HEIGHT) {
 
                 drawImage(item.ox,item.oy,item.card);
+                if(flag)
+                {
                 paytable.push(item.card);
+                flag=false;
+                }
               // 
                 
             }
