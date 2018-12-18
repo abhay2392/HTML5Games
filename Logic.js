@@ -13,6 +13,7 @@ const BALL_RADIUS = 7;
 const PADDLE_HEIGHT = 15;
 const PADDLE_WIDTH = 150;
 const MIN_HEIGHT_TO_CHECK = PADDLE_HEIGHT + 5;
+const PADDLE_COLOR='white';
 var flagToCheck = true;
 var ballColor = '';
 const OBSTACLE_HEIGHT = 40;
@@ -123,9 +124,8 @@ function moveBall(x, y) {
    
     //Create Paddle
     context.globalAlpha = 0.3;
-    context.fillStyle = 'white';
-    context.fillRect(0, 0, 700, 700);
-     
+  
+    context.clearRect(0, 0, canvas.width, canvas.height);
     context.globalAlpha = 1;
 
 
@@ -136,18 +136,18 @@ function moveBall(x, y) {
     context.arc(x, y, BALL_RADIUS, 0, Math.PI * 2, false);
     context.fill();
 
-    context.fillStyle = 'black';
+    context.fillStyle = PADDLE_COLOR;
     context.fillRect(paddleX, canvas.height - PADDLE_HEIGHT, PADDLE_WIDTH, PADDLE_HEIGHT);
 
    drawRandomRectangle();
    collisionCheck(x, y);
-   drawBG();
+  // drawBG();
 
 
 }
 
 function movePaddle(x) {
-    context.fillStyle = 'black';
+    context.fillStyle = PADDLE_COLOR;
     context.fillRect(x, canvas.height - PADDLE_HEIGHT, PADDLE_WIDTH, PADDLE_HEIGHT);
 
 
