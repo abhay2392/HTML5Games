@@ -40,7 +40,12 @@ window.onload = function (e) {
     //Move Ball
     var intrvl = setInterval(
         function () {
-
+ bgMusic.play();
+ if(bgMusic.sound.currentTime >=27)
+ {
+     bgMusic.reset();
+     //bgMusic.play();
+ }
 
 
             document.getElementById('score').innerHTML = score;
@@ -55,6 +60,7 @@ window.onload = function (e) {
                         setRandomColor();
                         ballColor = taggedcolor;
                         paddelStrikeMusic.play();
+                         
                         flagToCheck = false;
                     }
                     else {
@@ -162,9 +168,9 @@ function initializeGame() {
     context = canvas.getContext('2d');
     setRandomColor();
     ballColor=taggedcolor;
-    //paddelStrikeMusic=new sound("assets/bounce.mp3");
-    bgMusic=new sound("assets/jngbell.mid");
-    bgMusic.play();
+    paddelStrikeMusic=new sound("assets/bounce.mp3",false);
+    bgMusic=new sound("assets/bg.mp3",true);
+  
   
 }
 
@@ -226,11 +232,15 @@ function drawObstacle(x,y,color)
 }
 
 
-function sound(src) {
+function sound(src,flag) {
     this.sound = document.createElement("audio");
     this.sound.src = src;
     this.sound.setAttribute("preload", "auto");
     this.sound.setAttribute("controls", "none");
+    if(flag)
+    {
+    this.sound.setAttribute("loop",flag);
+    }
     this.sound.style.display = "none";
     document.body.appendChild(this.sound);
     this.play = function(){
@@ -239,4 +249,9 @@ function sound(src) {
     this.stop = function(){
         this.sound.pause();
     }    
+    this.reset=function()
+    {
+        this.sound.currentTime=0;
+        this.sound.play();
+    }
 }
