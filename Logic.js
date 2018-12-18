@@ -118,6 +118,8 @@ function getMousePos(canvas, evt) {
 function moveBall(x, y) {
 
 
+  
+ 
    
     //Create Paddle
     context.globalAlpha = 0.3;
@@ -139,6 +141,7 @@ function moveBall(x, y) {
 
    drawRandomRectangle();
    collisionCheck(x, y);
+   drawBG();
 
 
 }
@@ -156,6 +159,17 @@ function initializeGame() {
     context = canvas.getContext('2d');
     setRandomColor();
     ballColor=taggedcolor;
+  
+}
+
+function drawBG()
+{
+      var imageObj = new Image();
+
+      imageObj.onload = function() {
+        context.drawImage(imageObj, 0, 0);
+      };
+      imageObj.src = 'img/base.jpg';
 }
 
 function setRandomColor() {
@@ -207,5 +221,8 @@ function drawObstacle(x,y,color)
             context.rect(x,y, OBSTACLE_WIDTH, OBSTACLE_HEIGHT);
             context.fillStyle = color;
             context.closePath();
+            context.strokeStyle='grey';
+            context.stroke();
             context.fill();
+
 }
