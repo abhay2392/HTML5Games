@@ -141,7 +141,7 @@ function moveBall(x, y) {
 
    drawRandomRectangle();
    collisionCheck(x, y);
-  // drawBG();
+
 
 
 }
@@ -162,15 +162,6 @@ function initializeGame() {
   
 }
 
-function drawBG()
-{
-      var imageObj = new Image();
-
-      imageObj.onload = function() {
-        context.drawImage(imageObj, 0, 0);
-      };
-      imageObj.src = 'img/base.jpg';
-}
 
 function setRandomColor() {
     var letters = '0123456789ABCDEF';
