@@ -23,7 +23,8 @@ var  taggedcolor = '#';
 var paddelStrikeMusic;
 var bgMusic;
 var cardMap=[1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5];
-
+var cardMap1=[1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5];
+var paytable=[];
 
 window.onload = function (e) {
     initializeGame();
@@ -61,7 +62,11 @@ window.onload = function (e) {
                         setRandomColor();
                         ballColor = taggedcolor;
                         paddelStrikeMusic.play();
-                         
+                       
+                          drawRandomRectangle();
+                         console.log(obstacleMap);
+                         console.log(paytable);
+                         paytable=[];
                         flagToCheck = false;
                     }
                     else {
@@ -194,6 +199,7 @@ function collisionCheck(x, y) {
             if (y > item.oy && y < item.oy + OBSTACLE_HEIGHT) {
 
                 drawImage(item.ox,item.oy,item.card);
+                paytable.push(item.card);
               // 
                 
             }
@@ -212,14 +218,14 @@ function shuffleArray(array) {
 }
 
 function drawRandomRectangle() {
-
+obstacleMap=[];
 shuffleArray(cardMap);
-console.log(cardMap);
+
 var count=0;
     for (var i = 1; i <= 5; i++) {
         for (var j = 1; j <= 5; j++) {
  
- console.log('data'+cardMap[count])
+
             var obstacle = { ox: j * 100, oy: i * 70 , card:cardMap[count] };
             obstacleMap.push(obstacle);
           drawObstacle(j*100,i*70,'white');
@@ -282,7 +288,7 @@ function sound(src,flag) {
 
 function drawImage(x,y,card)
 {
-    //console.log(i++);
+  
       var imageObj = new Image();
        imageObj.src = "assets/"+card+".png";
                
