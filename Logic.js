@@ -1,5 +1,6 @@
 
 var canvas = null;
+var canvasSlot=null;
 var context = null;
 var paddle = null;
 var ballX = 50;
@@ -23,7 +24,7 @@ var  taggedcolor = '#';
 var paddelStrikeMusic;
 var bgMusic;
 var cardMap=[1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5];
-var paytable=[];
+var slotTable=[];
 
 window.onload = function (e) {
     initializeGame();
@@ -62,11 +63,19 @@ window.onload = function (e) {
                         ballColor = taggedcolor;
                         paddelStrikeMusic.play();
                        
-                          drawRandomRectangle();
-                         console.log(obstacleMap);
-                         console.log(paytable);
-                         paytable=[];
+                        
+                         
+                         obstacleMap.forEach(function(item)
+                         {
+                             if(item.show)
+                             {
+                                 slotTable.push(item.card);
+                             }
+                         });
+                         paintSlot();
+                         drawRandomRectangle();
                         flagToCheck = false;
+                        console.log(slotTable);
                     }
                     else {
                         alert('lost');
@@ -173,6 +182,9 @@ function movePaddle(x) {
 function initializeGame() {
     canvas = document.getElementById("canvasGame");
     context = canvas.getContext('2d');
+
+    canvasSlot = document.getElementById("canvasSlot");
+    contextSlot = canvasSlot.getContext('2d');
     setRandomColor();
     ballColor=taggedcolor;
     paddelStrikeMusic=new sound("assets/bounce.mp3",false);
@@ -193,18 +205,13 @@ function setRandomColor() {
 
 function collisionCheck(x, y) {
    
-   var flag=true;
+   
     obstacleMap.forEach(function (item) {
         if (x > item.ox && x < item.ox + OBSTACLE_WIDTH) {
             if (y > item.oy && y < item.oy + OBSTACLE_HEIGHT) {
-
-                drawImage(item.ox,item.oy,item.card);
-                if(flag)
-                {
-                paytable.push(item.card);
-                flag=false;
-                }
-              // 
+item.show=true;
+               // drawImage(item.ox,item.oy,item.card,item.show);
+               
                 
             }
         }
@@ -230,9 +237,11 @@ var count=0;
         for (var j = 1; j <= 5; j++) {
  
 
-            var obstacle = { ox: j * 100, oy: i * 70 , card:cardMap[count] };
+            var obstacle = { ox: j * 100, oy: i * 70 , card:cardMap[count], show:false };
             obstacleMap.push(obstacle);
-          drawObstacle(j*100,i*70,'white');
+         //drawObstacle(j*100,i*70,'white');
+        // drawImage();
+        
           count++;
         }
 
@@ -247,7 +256,7 @@ var count=0;
 function drawObstacle()
 {
 
-     obstacleMap.forEach(function (item) {
+     //obstacleMap.forEach(function (item) {
       
 //   context.beginPath();
 //             context.rect(item.ox,item.oy, OBSTACLE_WIDTH, OBSTACLE_HEIGHT);
@@ -257,13 +266,13 @@ function drawObstacle()
 //             context.stroke();
 //             context.fill();
 
-                drawImage(item.ox,item.oy,'gift');
+               drawImage();
               // 
                 
            
     
 
-     });
+    // });
 }
 
 
@@ -291,13 +300,58 @@ function sound(src,flag) {
     }
 }
 
-function drawImage(x,y,card)
+function paintSlot()
+{
+   var n=10;var m;
+    for(var i=0;i<slotTable.length;i++)
+    {
+        m=i;
+        if((i+1)%5==0)
+        {
+            n+=OBSTACLE_HEIGHT;
+            m=0;
+        }
+        var img=new Image();
+        img.src="assets/"+slotTable[i]+".png";
+        contextSlot.drawImage(img, 15*m+(m*OBSTACLE_WIDTH), n,OBSTACLE_WIDTH,OBSTACLE_HEIGHT);
+    }
+}
+
+function drawImage()
 {
   
-      var imageObj = new Image();
-       imageObj.src = "assets/"+card+".png";
+    obstacleMap.forEach(function (item) {
+      
+        //   context.beginPath();
+        //             context.rect(item.ox,item.oy, OBSTACLE_WIDTH, OBSTACLE_HEIGHT);
+        //             context.fillStyle = "white";
+        //             context.closePath();
+        //             context.strokeStyle='grey';
+        //             context.stroke();
+        //             context.fill();
+        
+        //var imageObj = new Image();
+        if(item.show){
+            var imageObj = new Image();
+       imageObj.src = "assets/"+item.card+".png";
                
-        context.drawImage(imageObj, x, y,OBSTACLE_WIDTH,OBSTACLE_HEIGHT);
+        context.drawImage(imageObj, item.ox, item.oy,OBSTACLE_WIDTH,OBSTACLE_HEIGHT);
+        }
+        else
+        {
+            var imageObj1 = new Image();
+            imageObj1.src = "assets/0.png";
+               
+        context.drawImage(imageObj1, item.ox, item.oy,OBSTACLE_WIDTH,OBSTACLE_HEIGHT);
+        }
+                      //  drawImage(item.ox,item.oy,'gift');
+                      // 
+                        
+                   
+            
+        
+             });
+      
      
                 
             
