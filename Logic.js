@@ -298,22 +298,22 @@ function sound(src,flag) {
         this.sound.currentTime=0;
         this.sound.play();
     }
-}
+} 
 
 function paintSlot()
 {
-   var n=10;var m;
+   var n=10;var m=0;
     for(var i=0;i<slotTable.length;i++)
     {
-        m=i;
-        if((i+1)%5==0)
+        m++;
+        if((i)%5==0)
         {
             n+=OBSTACLE_HEIGHT;
             m=0;
         }
         var img=new Image();
         img.src="assets/"+slotTable[i]+".png";
-        contextSlot.drawImage(img, 15*m+(m*OBSTACLE_WIDTH), n,OBSTACLE_WIDTH,OBSTACLE_HEIGHT);
+        contextSlot.drawImage(img, 25+ 15*m+(m*OBSTACLE_WIDTH), n,OBSTACLE_WIDTH,OBSTACLE_HEIGHT);
     }
 }
 
