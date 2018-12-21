@@ -344,12 +344,12 @@ function checkForPayline() {
        {
            n+=5;
            PayLine.push(itemObj);
-           itemObj = { item: slotTable[i], itemCount: 1 };
+           itemObj = { item: slotTable[i+1], itemCount: 1 };
        }
         maxCount=1;
         for(var j=i+1;j<n;j++)
         {
-            if(itemObj.item==slotTable[j])
+            if(slotTable[i]==slotTable[j])
             {
                 maxCount++;
             }
