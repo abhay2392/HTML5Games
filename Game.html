@@ -1,26 +1,58 @@
 <html>
-    <head>
-        <style>
-           canvas { 
-   background:url("assets/base.jpg"); 
-   background-size:cover;
-}
-            </style>
-    </head>
-    <script  src="Logic.js"></script>
+
+<head>
     <style>
-        canvas
-        {
-            border:1px solid #d2d2d2;
+        canvas {
+            background: url("assets/base.jpg");
+            background-size: cover;
+            border: 5px solid red;
+            border-style: ridge;
         }
-        </style>
-    <body>
-        <div>
-            Score: <span id="score"></span>
+
+        .divCanvas {
+            float: left;
+            padding: 25px;
+        }
+        .divPaytable
+        {
+            background: url("assets/paytable.png") no-repeat;
+            background-size: contain;
+            height:199px;
+            width: 310px;
+            border: 5px solid red;
+            border-style: ridge;
+            margin-top:10px;
+
+        }
+        .container
+        {
+            width: 1172px;
+            margin-left:auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<script src="Logic.js"></script>
+
+<body>
+    
+    <div class="container">
+            <div>
+                    Score: <span id="score"></span>
+                </div>
+        <div class="divCanvas">
+            <canvas id="canvasGame" width="650" height="700"></canvas>
         </div>
-        <canvas id="canvasGame" width="700" height="700"></canvas>
+        <diV class="divCanvas">
+            <div>
+            <canvas id="canvasSlot" width="360" height="300">
+                </div>
+                <div>
+                        <div class="divCanvas divPaytable"></div>
+        </diV>
         
-                <canvas id="canvasSlot" width="400" height="300" style="float:left;border:1px solid #000;">
-       
-    </body>
+    </div>
+
+</body>
+
 </html>

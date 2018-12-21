@@ -256,23 +256,10 @@ var count=0;
 function drawObstacle()
 {
 
-     //obstacleMap.forEach(function (item) {
-      
-//   context.beginPath();
-//             context.rect(item.ox,item.oy, OBSTACLE_WIDTH, OBSTACLE_HEIGHT);
-//             context.fillStyle = "white";
-//             context.closePath();
-//             context.strokeStyle='grey';
-//             context.stroke();
-//             context.fill();
-
-               drawImage();
-              // 
-                
-           
     
 
-    // });
+               drawImage();
+             
 }
 
 
@@ -303,17 +290,19 @@ function sound(src,flag) {
 function paintSlot()
 {
    var n=10;var m=0;
-    for(var i=0;i<slotTable.length;i++)
+    for(var i=1;i<=slotTable.length;i++)
     {
+       
+        
+        var img=new Image();
+        img.src="assets/"+slotTable[i-1]+".png";
+        contextSlot.drawImage(img, 25+ 15*m+(m*OBSTACLE_WIDTH), n,OBSTACLE_WIDTH,OBSTACLE_HEIGHT);
         m++;
-        if((i)%5==0)
+        if(i%5==0)
         {
             n+=OBSTACLE_HEIGHT;
             m=0;
         }
-        var img=new Image();
-        img.src="assets/"+slotTable[i]+".png";
-        contextSlot.drawImage(img, 25+ 15*m+(m*OBSTACLE_WIDTH), n,OBSTACLE_WIDTH,OBSTACLE_HEIGHT);
     }
 }
 
