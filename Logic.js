@@ -71,11 +71,15 @@ window.onload = function (e) {
                                 }
                             }
                             else {
-                                clearInterval(intrvl);
+                                paintSlot();
                                 checkForPayline();
+                                clearInterval(intrvl);
+                             
+                               //paintPayLine();
                             }
                         });
                         paintSlot();
+                       
                         drawRandomRectangle();
                         flagToCheck = false;
 
@@ -368,6 +372,29 @@ function checkForPayline() {
     }
 
     console.log(PayLine);
+    paintPayLine(PayLine);
 }
 
 
+
+function paintPayLine(PayLine)
+{
+    
+    var n=15;var y=0;
+    for(var i=0;i<PayLine.length;i++)
+    { y+=n+OBSTACLE_HEIGHT/2;
+        
+        if(PayLine[i].itemCount>=3)
+        {
+           
+            contextSlot.beginPath();
+            contextSlot.moveTo(35,y);
+            contextSlot.lineTo(325, y);
+            contextSlot.strokeStyle="#b90202";
+            contextSlot.lineWidth = 4;
+            contextSlot.stroke();
+
+        }
+        y+=OBSTACLE_HEIGHT/2;
+    }
+}

@@ -2,11 +2,10 @@
 
 <head>
     <style>
-        canvas {
+        #canvasGame {
             background: url("assets/base.jpg");
             background-size: cover;
-            border: 5px solid #5546d0;
-            border-style: ridge;
+            box-shadow: 1px 1px 19px #1c457d;
         }
 
         .divCanvas {
@@ -19,8 +18,7 @@
             background-size: contain;
             height:199px;
             width: 310px;
-            border: 5px solid #5546d0;
-            border-style: ridge;
+            box-shadow: 1px 1px 19px #1c457d;
             margin-top:10px;
 
         }
@@ -29,6 +27,14 @@
             width: 1172px;
             margin-left:auto;
             margin-right: auto;
+        }
+
+        .divSlot
+        {
+            background: url("assets/slotBG.jpg") no-repeat;
+            background-size: contain;
+            padding-top: 254px;
+    background-color: #ecedf1;
         }
     </style>
 </head>
@@ -43,15 +49,16 @@
         <div class="divCanvas">
             <canvas id="canvasGame" width="650" height="700"></canvas>
         </div>
-        <diV class="divCanvas">
+        <diV class="divCanvas divSlot">
             <div>
             <canvas id="canvasSlot" width="360" height="340">
                 </div>
-                <div>
-                        <div class="divCanvas divPaytable"></div>
-        </diV>
+               
         
     </div>
+    <div>
+        <div class="divCanvas divPaytable"></div>
+</diV>
 
 </body>
 
