@@ -28,7 +28,7 @@
         .console
         {
             float: left;
-           // padding:25px;
+         padding-top:25px; 
 
         }
 
@@ -39,6 +39,8 @@
             cursor: pointer;
             color: #fff;
             font-size:19px;
+            position: relative;
+            top:-3px;
         }
 
         .spanPaytable {
@@ -77,17 +79,22 @@
         .console span{
             font-size: 24px;
             display: inline-block;
-            padding-right: 25px;
-            padding-top: 25px;
+           
+            
+    padding: 2px 15px 2px 4px;
+     
+    border-left: 4px solid;
+    margin: 3px;
+}
+
+        
+
+        #spanCredit
+        {background-color: teal;
 
         }
-
-        .spanCredit
-        {
-
-        }
-        .spanBet
-        {
+        #spanBet
+        {background-color:#ffc107;
 
         }
 
@@ -96,8 +103,8 @@
             padding: 4px;
         }
 
-        .spanWin
-        {
+        #spanWin
+        {background-color: #f44336;
 
         }
     </style>
@@ -141,7 +148,7 @@
                 <span id="spanWin">
 WIN:
                     </span>
-                    <br>
+                   
 <button id="btnPlay">
     PLAY &#9654;
 </button>

@@ -1,6 +1,6 @@
 
 
-var credit=100;
+var credit=10;
 var bet=1;
 var win=0;
 var canvas = null;

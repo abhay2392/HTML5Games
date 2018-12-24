@@ -1,0 +1,152 @@
+
+<!-- saved from url=(0031)file:///D:/HTML5Games/Game.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+    <style>
+        body {
+            font-family: calibri;
+        }
+
+        #canvasGame {
+            background: url("assets/base.jpg");
+            background-size: cover;
+            box-shadow: 1px 1px 19px #1c457d;
+        }
+
+        .divCanvas {
+            float: left;
+            padding: 25px;
+        }
+
+        .divPaytable {
+            
+            width: 650px;
+           padding:25px;
+            float: left;
+
+        }
+
+        .console
+        {
+            float: left;
+         padding-top:25px; 
+
+        }
+
+        .console button{
+            border:0px;
+            background:#1c457d;
+            padding: 5px 14px;
+            cursor: pointer;
+            color: #fff;
+            font-size:19px;
+        }
+
+        .spanPaytable {
+            box-shadow: 2px 2px 25px #d2d2d2;
+            text-align: center;
+            display: inline-block;
+            padding: 2px 7px;
+        }
+
+        .spanPaytable span {
+            position: relative;
+            top: -13px;
+            font-size: 18px;
+            margin: 5px;
+        }
+
+        .container {
+            width: 1172px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        img {
+            width: 40px;
+        }
+
+        .divSlot {
+            background: url("assets/slotBG.jpg") no-repeat;
+            background-size: contain;
+            padding-top: 254px;
+            background-color: #ecedf1;
+            margin-top: 26px;
+            box-shadow: 2px 2px 7px #ccd0d6;
+        }
+
+        .console span{
+            font-size: 24px;
+            display: inline-block;
+           
+            background-color: teal;
+    padding: 2px 15px 2px 4px;
+     
+    border-left: 4px solid;
+}
+
+        
+
+        .spanCredit
+        {
+
+        }
+        .spanBet
+        {
+
+        }
+
+        input{
+            width: 50px;
+            padding: 4px;
+        }
+
+        .spanWin
+        {
+
+        }
+    </style>
+<script src="./Game_files/Logic.js.download"></script></head>
+
+
+<body>
+
+    <div class="container">
+        <div>
+            Score: <span id="score">0</span>
+        </div>
+        <div>
+            <div class="divCanvas">
+                <canvas id="canvasGame" width="650" height="620"></canvas>
+            </div>
+            <div class="divCanvas divSlot">
+                <div>
+                    <canvas id="canvasSlot" width="360" height="340">
+                </canvas></div>
+
+
+            </div>
+        </div>
+
+        <div class="divPaytable">
+
+            <span class="spanPaytable"><img src="./Game_files/1.png"> <span>x count = 1 x count</span> </span>
+            <span class="spanPaytable"><img src="./Game_files/2.png"> <span>x count = 2 x count</span> </span>
+            <span class="spanPaytable"><img src="./Game_files/3.png"> <span>x count = 3 x count</span> </span>
+            <span class="spanPaytable"><img src="./Game_files/4.png"> <span>x count = 4 x count</span> </span>
+            <span class="spanPaytable"><img src="./Game_files/5.png"> <span>x count = 5 x count</span> </span>
+        </div>
+        <div class="console">
+            <span id="spanCredit">CREDIT: 99</span>
+          <span id="spanBet">BET: 1</span>
+                <span id="spanWin">WIN: 0</span>
+                   
+<button id="btnPlay">
+    PLAY &#9654;
+</button>
+        </div>
+
+    </div>
+
+
+
+<audio src="assets/bounce.mp3" preload="auto" controls="none" style="display: none;"></audio><audio src="assets/bg.mp3" preload="auto" controls="none" loop="true" style="display: none;"></audio></body></html>
