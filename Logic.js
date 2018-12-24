@@ -83,10 +83,10 @@ function init()
                             }
                             else {
                                 paintSlot();
-                                updateConsole();
+                               // updateConsole();
                                 checkForPayline();
                                 clearInterval(intrvl);
-                             
+                                return false;
                                //paintPayLine();
                             }
                         });
@@ -118,7 +118,7 @@ function init()
                     ballX = -ballX;
                     // ballY=-ballY;
                 }
-            }
+            } 
 
 
 
@@ -210,7 +210,7 @@ function initializeGame() {
     ballColor = taggedcolor;
     paddelStrikeMusic = new sound("assets/bounce.mp3", false);
     bgMusic = new sound("assets/bg.mp3", true);
-    updateConsole();
+    initConsole();
 
 
 }
@@ -400,14 +400,14 @@ function checkForPayline() {
 
 function paintPayLine(PayLine)
 {
-    
+    var winAmout=0;
     var n=15;var y=0;
     for(var i=0;i<PayLine.length;i++)
     { y+=n+OBSTACLE_HEIGHT/2;
         
         if(PayLine[i].itemCount>=3)
         {
-           
+            winAmout+=PayLine[i].item*PayLine[i].itemCount;
             contextSlot.beginPath();
             contextSlot.moveTo(35,y);
             contextSlot.lineTo(325, y);
@@ -418,10 +418,12 @@ function paintPayLine(PayLine)
         }
         y+=OBSTACLE_HEIGHT/2;
     }
+
+    calculateWin(winAmout);
 }
 
 
-function updateConsole()
+function initConsole()
 {
     credit-=bet;
     document.getElementById('spanCredit').innerHTML='CREDIT: '+credit;
@@ -430,3 +432,11 @@ function updateConsole()
    
 
 }
+
+function calculateWin(winAmout)
+{
+    credit +=winAmout;
+    document.getElementById('spanCredit').innerHTML='CREDIT: '+credit;
+    document.getElementById('spanWin').innerHTML='WIN: ' + winAmout;
+    document.getElementById('spanBet').innerHTML='BET: ' + bet;
+} 
