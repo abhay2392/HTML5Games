@@ -1,4 +1,8 @@
 
+
+var credit=100;
+var bet=1;
+var win=0;
 var canvas = null;
 var canvasSlot = null;
 var context = null;
@@ -27,6 +31,13 @@ var cardMap = [1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2,
 var slotTable = [];
 
 window.onload = function (e) {
+   init();
+
+};
+
+
+function init()
+{
     initializeGame();
     drawRandomRectangle();
     // context.beginPath();
@@ -72,6 +83,7 @@ window.onload = function (e) {
                             }
                             else {
                                 paintSlot();
+                                updateConsole();
                                 checkForPayline();
                                 clearInterval(intrvl);
                              
@@ -134,8 +146,7 @@ window.onload = function (e) {
         },
         15
     );
-
-};
+}
 
 function getMousePos(canvas, evt) {
     var rect = canvas.getBoundingClientRect();
@@ -188,6 +199,8 @@ function movePaddle(x) {
 
 
 function initializeGame() {
+
+    document.getElementById('btnPlay').addEventListener('click',playGame);
     canvas = document.getElementById("canvasGame");
     context = canvas.getContext('2d');
 
@@ -197,7 +210,15 @@ function initializeGame() {
     ballColor = taggedcolor;
     paddelStrikeMusic = new sound("assets/bounce.mp3", false);
     bgMusic = new sound("assets/bg.mp3", true);
+    updateConsole();
 
+
+}
+
+function playGame()
+{
+    slotTable=[];
+    init();
 
 }
 
@@ -397,4 +418,15 @@ function paintPayLine(PayLine)
         }
         y+=OBSTACLE_HEIGHT/2;
     }
+}
+
+
+function updateConsole()
+{
+    credit-=bet;
+    document.getElementById('spanCredit').innerHTML='CREDIT: '+credit;
+    document.getElementById('spanWin').innerHTML='WIN: ' + win;
+    document.getElementById('spanBet').innerHTML='BET: ' + bet;
+   
+
 }

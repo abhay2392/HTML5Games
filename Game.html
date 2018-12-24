@@ -2,6 +2,10 @@
 
 <head>
     <style>
+        body {
+            font-family: calibri;
+        }
+
         #canvasGame {
             background: url("assets/base.jpg");
             background-size: cover;
@@ -12,53 +16,138 @@
             float: left;
             padding: 25px;
         }
-        .divPaytable
-        {
-            background: url("assets/paytable.png") no-repeat;
-            background-size: contain;
-            height:199px;
-            width: 310px;
-            box-shadow: 1px 1px 19px #1c457d;
-            margin-top:10px;
+
+        .divPaytable {
+            
+            width: 650px;
+           padding:25px;
+            float: left;
 
         }
-        .container
+
+        .console
         {
+            float: left;
+           // padding:25px;
+
+        }
+
+        .console button{
+            border:0px;
+            background:#1c457d;
+            padding: 5px 14px;
+            cursor: pointer;
+            color: #fff;
+            font-size:19px;
+        }
+
+        .spanPaytable {
+            box-shadow: 2px 2px 25px #d2d2d2;
+            text-align: center;
+            display: inline-block;
+            padding: 2px 7px;
+        }
+
+        .spanPaytable span {
+            position: relative;
+            top: -13px;
+            font-size: 18px;
+            margin: 5px;
+        }
+
+        .container {
             width: 1172px;
-            margin-left:auto;
+            margin-left: auto;
             margin-right: auto;
         }
 
-        .divSlot
-        {
+        img {
+            width: 40px;
+        }
+
+        .divSlot {
             background: url("assets/slotBG.jpg") no-repeat;
             background-size: contain;
             padding-top: 254px;
-    background-color: #ecedf1;
+            background-color: #ecedf1;
+            margin-top: 26px;
+            box-shadow: 2px 2px 7px #ccd0d6;
+        }
+
+        .console span{
+            font-size: 24px;
+            display: inline-block;
+            padding-right: 25px;
+            padding-top: 25px;
+
+        }
+
+        .spanCredit
+        {
+
+        }
+        .spanBet
+        {
+
+        }
+
+        input{
+            width: 50px;
+            padding: 4px;
+        }
+
+        .spanWin
+        {
+
         }
     </style>
 </head>
 <script src="Logic.js"></script>
 
 <body>
-    
+
     <div class="container">
-            <div>
-                    Score: <span id="score"></span>
-                </div>
-        <div class="divCanvas">
-            <canvas id="canvasGame" width="650" height="700"></canvas>
+        <div>
+            Score: <span id="score"></span>
         </div>
-        <diV class="divCanvas divSlot">
-            <div>
-            <canvas id="canvasSlot" width="360" height="340">
+        <div>
+            <div class="divCanvas">
+                <canvas id="canvasGame" width="650" height="620"></canvas>
+            </div>
+            <diV class="divCanvas divSlot">
+                <div>
+                    <canvas id="canvasSlot" width="360" height="340">
                 </div>
-               
-        
+
+
+            </div>
+        </div>
+
+        <div class="divPaytable">
+
+            <span class='spanPaytable'><img src="assets/1.png" /> <span>x count = 1 x count</span> </span>
+            <span class='spanPaytable'><img src="assets/2.png" /> <span>x count = 2 x count</span> </span>
+            <span class='spanPaytable'><img src="assets/3.png" /> <span>x count = 3 x count</span> </span>
+            <span class='spanPaytable'><img src="assets/4.png" /> <span>x count = 4 x count</span> </span>
+            <span class='spanPaytable'><img src="assets/5.png" /> <span>x count = 5 x count</span> </span>
+        </div>
+        <div class="console">
+            <span id="spanCredit">
+
+            </span>
+          <span id="spanBet">
+                 <!-- <input type="number" id='slotBet' min='1' max='5'/> --> 
+                </span>
+                <span id="spanWin">
+WIN:
+                    </span>
+                    <br>
+<button id="btnPlay">
+    PLAY &#9654;
+</button>
+        </div>
+
     </div>
-    <div>
-        <div class="divCanvas divPaytable"></div>
-</diV>
 
 </body>
 
