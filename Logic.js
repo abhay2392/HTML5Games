@@ -223,7 +223,7 @@ function initializeGame() {
     paddelStrikeMusic = new sound("assets/bounce.mp3", false);
     bgMusic = new sound("assets/bg.mp3", true);
     initConsole();
-    ballX=paddleX/2;
+    ballX=PADDLE_WIDTH/2;
     ballY=canvas.height-PADDLE_HEIGHT;
 
 
