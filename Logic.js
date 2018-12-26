@@ -60,7 +60,7 @@ function init()
             }
 
 
-            document.getElementById('score').innerHTML = score;
+           
             ballX += dx;
             ballY += dy;
 
@@ -75,10 +75,13 @@ function init()
 
 
 
-                        obstacleMap.forEach(function (item) {
-                            if (slotTable.length <= 25) {
-                                if (item.show) {
-                                    slotTable.push(item.card);
+
+                        for(var i=0;i<obstacleMap.length;i++)
+                        {
+
+                            if (slotTable.length <25) {
+                                if (obstacleMap[i].show) {
+                                    slotTable.push(obstacleMap[i].card);
                                 }
                             }
                             else {
@@ -86,14 +89,16 @@ function init()
                                // updateConsole();
                                 checkForPayline();
                                 clearInterval(intrvl);
-                                return false;
+                              break;
                                //paintPayLine();
                             }
-                        });
+                        }
+                     
                         paintSlot();
                        
                         drawRandomRectangle();
                         flagToCheck = false;
+                        collisionWithWallEffect(PADDLE_HEIGHT);
 
                     }
                     else {
@@ -111,38 +116,9 @@ function init()
                 flagToCheck = true;
 
             }
+                collisionWithWallEffect(0);
 
-            //Craete Ball
-            if (ballX >= 0) {
-                if (ballX > canvas.width) {
-                    ballX = -ballX;
-                    // ballY=-ballY;
-                }
-            } 
-
-
-
-            if (ballX <= 0 && ballY >= 0) {
-                moveBall(-ballX, ballY);
-
-            }
-
-            if (ballY > canvas.height) {
-                ballY = -ballY;
-            }
-
-            if (ballX <= 0 && ballY <= 0) {
-                moveBall(-ballX, -ballY);
-
-            }
-
-            if (ballX >= 0 && ballY <= 0) {
-                moveBall(ballX, -ballY);
-
-            }
-            if (ballX > 0 && ballY > 0) {
-                moveBall(ballX, ballY);
-            }
+        
         },
         15
     );
@@ -155,6 +131,42 @@ function getMousePos(canvas, evt) {
         y: evt.clientY - rect.top
     };
 }
+
+function collisionWithWallEffect( paddleHight)
+{
+        //Craete Ball
+        if (ballX >= 0) {
+            if (ballX+BALL_RADIUS > canvas.width) {
+                ballX = -ballX;
+                // ballY=-ballY;
+            }
+        } 
+
+
+
+        if (ballX <= 0 && ballY >= 0) {
+            moveBall(-ballX, ballY);
+
+        }
+
+        if (ballY+BALL_RADIUS+paddleHight > canvas.height) {
+            ballY = -ballY;
+        }
+
+        if (ballX <= 0 && ballY <= 0) {
+            moveBall(-ballX, -ballY);
+
+        }
+
+        if (ballX >= 0 && ballY <= 0) {
+            moveBall(ballX, -ballY);
+
+        }
+        if (ballX > 0 && ballY > 0) {
+            moveBall(ballX, ballY);
+        }
+}
+
 
 //Move the Ball
 function moveBall(x, y) {
@@ -211,6 +223,8 @@ function initializeGame() {
     paddelStrikeMusic = new sound("assets/bounce.mp3", false);
     bgMusic = new sound("assets/bg.mp3", true);
     initConsole();
+    ballX=paddleX/2;
+    ballY=canvas.height-PADDLE_HEIGHT;
 
 
 }
@@ -218,6 +232,8 @@ function initializeGame() {
 function playGame()
 {
     slotTable=[];
+    flagToCheck=false;
+    contextSlot.clearRect(0,0,canvasSlot.width,canvasSlot.height);
     init();
 
 }
