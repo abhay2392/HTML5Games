@@ -89,6 +89,7 @@ function init()
                                // updateConsole();
                                 checkForPayline();
                                 clearInterval(intrvl);
+                                document.getElementById('btnPlay').style.display='inline-block';
                               break;
                                //paintPayLine();
                             }
@@ -106,6 +107,7 @@ function init()
                         context.clearRect(0, 0, canvas.width, canvas.height);
                         //initializeGame();
                         clearInterval(intrvl);
+                        document.getElementById('btnPlay').style.display='inline-block';
 
                     }
 
@@ -225,12 +227,14 @@ function initializeGame() {
     initConsole();
     ballX=paddleX+PADDLE_WIDTH/2;
     ballY=canvas.height-PADDLE_HEIGHT;
+    document.getElementById('btnPlay').style.display='none';
 
 
 }
 
 function playGame()
 {
+    document.getElementById('btnPlay').style.display='none';
     var element = document.body.classList.remove("illumination");
     slotTable=[];
     flagToCheck=false;
