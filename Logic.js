@@ -231,6 +231,7 @@ function initializeGame() {
 
 function playGame()
 {
+    var element = document.body.classList.remove("illumination");
     slotTable=[];
     flagToCheck=false;
     contextSlot.clearRect(0,0,canvasSlot.width,canvasSlot.height);
@@ -451,8 +452,17 @@ function initConsole()
 
 function calculateWin(winAmout)
 {
+    if(winAmout>0)
+    {
+        illuminateGame();
+    }
     credit +=winAmout;
     document.getElementById('spanCredit').innerHTML='CREDIT: '+credit;
     document.getElementById('spanWin').innerHTML='WIN: ' + winAmout;
     document.getElementById('spanBet').innerHTML='BET: ' + bet;
 } 
+
+function illuminateGame()
+{
+    var element = document.body.classList.add("illumination");
+}
