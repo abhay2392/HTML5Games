@@ -2,6 +2,22 @@
 
 <head>
     <style>
+
+@font-face {
+  font-family: dashedtxt;
+  src: url(assets/dashedtxt.ttf);
+}
+
+.title
+{
+    float: right;
+    font-family: dashedtxt;
+    font-weight: bold;
+    font-size: 54px;
+    padding-top: 0px;
+    padding-right: 122px;
+    color: #791616;
+}
         .illumination {
 
 
@@ -201,11 +217,12 @@
 <body>
 
     <div class="container">
-
         <div>
             <div class="divCanvas ">
                 <span class="divTab">GAME</span>
                 <canvas id="canvasGame" width="650" height="620" class="tabMargin"></canvas>
+                
+
             </div>
             <diV class="divCanvas">
                 <span class="divTab">SLOT</span>
@@ -239,6 +256,8 @@
                 </button>
             </div>
         </div>
+
+        <span class="title">Slot- E - Santa</span>
 
         <div class="divPaytable">
                 <span class="divTab">PAYTABLE</span>
