@@ -7,10 +7,29 @@
             background-color: #e91e63;
         }
 
+        .tabMargin
+        {
+            margin-top:36px; 
+        }
+
+        .divTab
+        {
+            position: absolute;
+  
+    color: #fff;
+    border: 18px;
+    display: inline-block;
+    border-radius: 3px;
+    padding: 4px 10px;
+    border: 1px #941f1f;
+            border-style: dashed;
+        }
+
         #canvasGame {
             background: url("assets/base.jpg");
             background-size: cover;
             box-shadow: 1px 1px 19px #1c457d;
+            
         }
 
         .divCanvas {
@@ -51,6 +70,7 @@
             display: inline-block;
             padding: 2px 7px;
             background-color: #fff;
+         
         }
 
         .spanPaytable span {
@@ -74,13 +94,13 @@
         .divSlot {
             background: url("assets/slotBG.jpg") no-repeat;
             background-size: contain;
-            padding-top: 254px;
+            padding: 254px 0px 26px 0px;
             background-color: #ecedf1;
-            margin-top: 26px;
+           
             box-shadow: 1px 1px 8px #3c3d3e;
         }
 
-        .console span{
+        .console div span{
             font-size: 24px;
             display: inline-block;
            
@@ -120,27 +140,36 @@
     <div class="container">
         
         <div>
-            <div class="divCanvas">
-                <canvas id="canvasGame" width="650" height="620"></canvas>
+            <div class="divCanvas ">
+                <span class="divTab">GAME</span>
+                <canvas id="canvasGame" width="650" height="620" class="tabMargin"></canvas>
             </div>
-            <diV class="divCanvas divSlot">
-                <div>
+            <diV class="divCanvas">
+                    <span class="divTab">SLOT</span>
+                   
+<div class="divSlot tabMargin">
+                  
+                        
                     <canvas id="canvasSlot" width="360" height="340">
-                </div>
-
+                        </div>
+              
 
             </div>
         </div>
 
         <div class="divPaytable">
-
+                <span class="divTab">PAYTABLE</span>
+                <div class="tabMargin">
             <span class='spanPaytable'><img src="assets/1.png" /> <span>x count = 1 x count</span> </span>
             <span class='spanPaytable'><img src="assets/2.png" /> <span>x count = 2 x count</span> </span>
             <span class='spanPaytable'><img src="assets/3.png" /> <span>x count = 3 x count</span> </span>
             <span class='spanPaytable'><img src="assets/4.png" /> <span>x count = 4 x count</span> </span>
             <span class='spanPaytable'><img src="assets/5.png" /> <span>x count = 5 x count</span> </span>
+                </div>
         </div>
         <div class="console">
+                <span class="divTab">CONSOLE</span>
+                <div class="tabMargin">
             <span id="spanCredit">
 
             </span>
@@ -154,6 +183,7 @@ WIN:
 <button id="btnPlay">
     PLAY &#9654;
 </button>
+</div>
         </div>
 
     </div>
