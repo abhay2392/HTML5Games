@@ -2,53 +2,84 @@
 
 <head>
     <style>
+        .illumination {
 
-.illumination {
- 
- 
-  -webkit-animation-name: example; /* Safari 4.0 - 8.0 */
-  -webkit-animation-duration: 1s; /* Safari 4.0 - 8.0 */
-  animation-name: won;
-  animation-duration: 1s;
+
+            -webkit-animation-name: example;
+            /* Safari 4.0 - 8.0 */
+            -webkit-animation-duration: 1s;
+            /* Safari 4.0 - 8.0 */
+            animation-name: won;
+            animation-duration: 1s;
         }
 
-/* Safari 4.0 - 8.0 */
-@keyframes  won {
-  0%   {background-color: red;}
-  10%  {background-color: yellow;}
-   20%   {background-color: red;}
-  30%  {background-color: yellow;}
-   40%   {background-color: red;}
-  50%  {background-color: yellow;}
-   60%   {background-color: red;}
-  70%  {background-color: yellow;}
-   80%   {background-color: red;}
-  90%  {background-color: yellow;}
-  100%  {background-color: red;}
+        /* Safari 4.0 - 8.0 */
+        @keyframes won {
+            0% {
+                background-color: red;
+            }
 
-  }
+            10% {
+                background-color: yellow;
+            }
 
-body{
-    font-family: calibri;
+            20% {
+                background-color: red;
+            }
+
+            30% {
+                background-color: yellow;
+            }
+
+            40% {
+                background-color: red;
+            }
+
+            50% {
+                background-color: yellow;
+            }
+
+            60% {
+                background-color: red;
+            }
+
+            70% {
+                background-color: yellow;
+            }
+
+            80% {
+                background-color: red;
+            }
+
+            90% {
+                background-color: yellow;
+            }
+
+            100% {
+                background-color: red;
+            }
+
+        }
+
+        body {
+            font-family: calibri;
             background-color: #e91e63;
-}
-     
-
-        .tabMargin
-        {
-            margin-top:36px; 
         }
 
-        .divTab
-        {
+
+        .tabMargin {
+            margin-top: 36px;
+        }
+
+        .divTab {
             position: absolute;
-  
-    color: #fff;
-    border: 18px;
-    display: inline-block;
-    border-radius: 3px;
-    padding: 4px 10px;
-    border: 1px #941f1f;
+
+            color: #fff;
+            border: 18px;
+            display: inline-block;
+            border-radius: 3px;
+            padding: 4px 10px;
+            border: 1px #941f1f;
             border-style: dashed;
         }
 
@@ -56,7 +87,8 @@ body{
             background: url("assets/base.jpg");
             background-size: cover;
             box-shadow: 1px 1px 19px #1c457d;
-            
+            width: 90%;
+
         }
 
         .divCanvas {
@@ -65,29 +97,28 @@ body{
         }
 
         .divPaytable {
-            
-            width: 650px;
-           padding:25px;
+
+         
+            padding: 10px 22px;
             float: left;
 
         }
 
-        .console
-        {
+        .console {
             float: left;
-         padding-top:25px; 
+            padding: 0px 22px;
 
         }
 
-        .console button{
-            border:0px;
-            background:#1c457d;
+        .console button {
+            border: 0px;
+            background: #1c457d;
             padding: 5px 14px;
             cursor: pointer;
             color: #fff;
-            font-size:19px;
+            font-size: 19px;
             position: relative;
-            top:-3px;
+            top: -3px;
         }
 
         .spanPaytable {
@@ -97,7 +128,7 @@ body{
             display: inline-block;
             padding: 2px 7px;
             background-color: #fff;
-         
+
         }
 
         .spanPaytable span {
@@ -105,7 +136,7 @@ body{
             top: -13px;
             font-size: 18px;
             margin: 5px;
-            
+
         }
 
         .container {
@@ -121,42 +152,47 @@ body{
         .divSlot {
             background: url("assets/slotBG.jpg") no-repeat;
             background-size: contain;
-            padding: 254px 0px 26px 0px;
+            padding: 228px 0px 26px 0px;
             background-color: #ecedf1;
-           
+            width: 90%;
             box-shadow: 1px 1px 8px #3c3d3e;
         }
 
-        .console div span{
+        .console div span {
             font-size: 24px;
             display: inline-block;
-           
-            
-    padding: 2px 15px 2px 4px;
-     
-    border-left: 4px solid;
-    margin: 3px;
-}
 
-        
 
-        #spanCredit
-        {background-color: teal;
+            padding: 2px 15px 2px 4px;
 
+            border-left: 4px solid;
+            margin: 3px;
         }
-        #spanBet
-        {background-color:#ffc107;
+
+
+
+        #spanCredit {
+            background-color: teal;
 
         }
 
-        input{
+        #spanBet {
+            background-color: #ffc107;
+
+        }
+
+        input {
             width: 50px;
             padding: 4px;
         }
 
-        #spanWin
-        {background-color: #f44336;
+        #spanWin {
+            background-color: #f44336;
 
+        }
+
+        #canvasSlot {
+            width: 100%;
         }
     </style>
 </head>
@@ -165,22 +201,42 @@ body{
 <body>
 
     <div class="container">
-        
+
         <div>
             <div class="divCanvas ">
                 <span class="divTab">GAME</span>
                 <canvas id="canvasGame" width="650" height="620" class="tabMargin"></canvas>
             </div>
             <diV class="divCanvas">
-                    <span class="divTab">SLOT</span>
-                   
-<div class="divSlot tabMargin">
-                  
-                        
-                    <canvas id="canvasSlot" width="360" height="340">
-                        </div>
-              
+                <span class="divTab">SLOT</span>
 
+                <div class="divSlot tabMargin">
+
+
+                    <canvas id="canvasSlot" width="360" height="340">
+                </div>
+
+
+            </div>
+        </div>
+
+
+        <div class="console">
+            <span class="divTab">CONSOLE</span>
+            <div class="tabMargin">
+                <span id="spanCredit">
+
+                </span>
+                <span id="spanBet">
+                    <!-- <input type="number" id='slotBet' min='1' max='5'/> -->
+                </span>
+                <span id="spanWin">
+                    WIN:
+                </span>
+
+                <button id="btnPlay">
+                    PLAY &#9654;
+                </button>
             </div>
         </div>
 
@@ -193,24 +249,6 @@ body{
             <span class='spanPaytable'><img src="assets/4.png" /> <span>x count = 4 x count</span> </span>
             <span class='spanPaytable'><img src="assets/5.png" /> <span>x count = 5 x count</span> </span>
                 </div>
-        </div>
-        <div class="console">
-                <span class="divTab">CONSOLE</span>
-                <div class="tabMargin">
-            <span id="spanCredit">
-
-            </span>
-          <span id="spanBet">
-                 <!-- <input type="number" id='slotBet' min='1' max='5'/> --> 
-                </span>
-                <span id="spanWin">
-WIN:
-                    </span>
-                   
-<button id="btnPlay">
-    PLAY &#9654;
-</button>
-</div>
         </div>
 
     </div>
