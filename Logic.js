@@ -17,7 +17,7 @@ var dy = 2;
 const BALL_RADIUS = 7;
 const PADDLE_HEIGHT = 15;
 const PADDLE_WIDTH = 150;
-const MIN_HEIGHT_TO_CHECK = PADDLE_HEIGHT + 5;
+const MIN_HEIGHT_TO_CHECK = PADDLE_HEIGHT + 9;
 const PADDLE_COLOR = '#ff8d00';
 var flagToCheck = true;
 var ballColor = '';
@@ -149,7 +149,7 @@ function collisionWithWallEffect( paddleHight)
 
         }
 
-        if (ballY+BALL_RADIUS+paddleHight > canvas.height) {
+        if (ballY+BALL_RADIUS+paddleHight > canvas.height-PADDLE_HEIGHT) {
             ballY = -ballY;
         }
 
@@ -223,7 +223,7 @@ function initializeGame() {
     paddelStrikeMusic = new sound("assets/bounce.mp3", false);
     bgMusic = new sound("assets/bg.mp3", true);
     initConsole();
-    ballX=PADDLE_WIDTH/2;
+    ballX=paddleX+PADDLE_WIDTH/2;
     ballY=canvas.height-PADDLE_HEIGHT;
 
 
