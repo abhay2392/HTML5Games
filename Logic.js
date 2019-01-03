@@ -44,8 +44,8 @@ function init()
 
     canvas.addEventListener('mousemove', function (evt) {
         var mousePos = getMousePos(canvas, evt);
-        if (mousePos.x > PADDLE_WIDTH / 2 && mousePos.x < canvas.width - PADDLE_WIDTH / 2) {
-            paddleX = mousePos.x - PADDLE_WIDTH / 2;
+        if (mousePos.x > 0 && mousePos.x < canvas.width ) {
+            paddleX = mousePos.x  ;
         }
     }, false);
 
