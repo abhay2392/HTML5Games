@@ -29,6 +29,7 @@ var paddelStrikeMusic;
 var bgMusic;
 var cardMap = [1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5];
 var slotTable = [];
+var orderCount=0;
 
 window.onload = function (e) {
    init();
@@ -73,8 +74,8 @@ function init()
                         ballColor = taggedcolor;
                         paddelStrikeMusic.play();
 
-
-
+                        obstacleMap.sort(function(a, b){return a.order - b.order});
+ console.log(obstacleMap);
 
                         for(var i=0;i<obstacleMap.length;i++)
                         {
@@ -106,7 +107,7 @@ function init()
                         }
                      
                         paintSlot();
-                       
+                       console.log(slotTable);
                         drawRandomRectangle();
                         flagToCheck = false;
                         collisionWithWallEffect(PADDLE_HEIGHT);
@@ -223,7 +224,7 @@ function movePaddle(x) {
 
 
 function initializeGame() {
-
+    orderCount=0;
     document.getElementById('btnPlay').addEventListener('click',playGame);
     canvas = document.getElementById("canvasGame");
     context = canvas.getContext('2d');
@@ -265,12 +266,13 @@ function setRandomColor() {
 
 function collisionCheck(x, y) {
 
-
+    
     obstacleMap.forEach(function (item) {
         if (x > item.ox && x < item.ox + OBSTACLE_WIDTH) {
             if (y > item.oy && y < item.oy + OBSTACLE_HEIGHT) {
                 item.show = true;
-
+                item.order=orderCount++;
+console.log(item.card);
 
             }
         }
@@ -296,7 +298,7 @@ function drawRandomRectangle() {
         for (var j = 1; j <= 5; j++) {
 
 
-            var obstacle = { ox: j * 100, oy: i * 70, card: cardMap[count], show: false };
+            var obstacle = { ox: j * 100, oy: i * 70, card: cardMap[count], show: false, order:null };
             obstacleMap.push(obstacle);
 
             count++;
