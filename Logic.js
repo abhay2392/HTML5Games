@@ -83,6 +83,16 @@ function init()
                                 if (obstacleMap[i].show) {
                                     slotTable.push(obstacleMap[i].card);
                                 }
+                                if(slotTable.length==25)
+                                {
+                                    paintSlot();
+                                    // updateConsole();
+                                     checkForPayline();
+                                     clearInterval(intrvl);
+                                     document.getElementById('btnPlay').style.display='inline-block';
+                                   break;
+
+                                }
                             }
                             else {
                                 paintSlot();
