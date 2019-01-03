@@ -1,8 +1,8 @@
 
 
-var credit=10;
-var bet=1;
-var win=0;
+var credit = 10;
+var bet = 1;
+var win = 0;
 var canvas = null;
 var canvasSlot = null;
 var context = null;
@@ -26,27 +26,26 @@ const OBSTACLE_WIDTH = 50;
 var obstacleMap = [];
 var taggedcolor = '#';
 var paddelStrikeMusic;
-var bgMusic;
+var bgMusic=null;
 var cardMap = [1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5];
 var slotTable = [];
-var orderCount=0;
+var orderCount = 0;
 
 window.onload = function (e) {
-   init();
+    init();
 
 };
 
 
-function init()
-{
+function init() {
     initializeGame();
     drawRandomRectangle();
     // context.beginPath();
 
     canvas.addEventListener('mousemove', function (evt) {
         var mousePos = getMousePos(canvas, evt);
-        if (mousePos.x > 0 && mousePos.x < canvas.width ) {
-            paddleX = mousePos.x  ;
+        if (mousePos.x > 0 && mousePos.x < canvas.width) {
+            paddleX = mousePos.x;
         }
     }, false);
 
@@ -61,7 +60,7 @@ function init()
             }
 
 
-           
+
             ballX += dx;
             ballY += dy;
 
@@ -74,40 +73,38 @@ function init()
                         ballColor = taggedcolor;
                         paddelStrikeMusic.play();
 
-                        obstacleMap.sort(function(a, b){return a.order - b.order});
- console.log(obstacleMap);
+                        obstacleMap.sort(function (a, b) { return a.order - b.order });
+                        console.log(obstacleMap);
 
-                        for(var i=0;i<obstacleMap.length;i++)
-                        {
+                        for (var i = 0; i < obstacleMap.length; i++) {
 
-                            if (slotTable.length <25) {
+                            if (slotTable.length < 25) {
                                 if (obstacleMap[i].show) {
                                     slotTable.push(obstacleMap[i].card);
                                 }
-                                if(slotTable.length==25)
-                                {
+                                if (slotTable.length == 25) {
                                     paintSlot();
                                     // updateConsole();
-                                     checkForPayline();
-                                     clearInterval(intrvl);
-                                     document.getElementById('btnPlay').style.display='inline-block';
-                                   break;
+                                    checkForPayline();
+                                    clearInterval(intrvl);
+                                    document.getElementById('btnPlay').style.display = 'inline-block';
+                                    break;
 
                                 }
                             }
                             else {
                                 paintSlot();
-                               // updateConsole();
+                                // updateConsole();
                                 checkForPayline();
                                 clearInterval(intrvl);
-                                document.getElementById('btnPlay').style.display='inline-block';
-                              break;
-                               //paintPayLine();
+                                document.getElementById('btnPlay').style.display = 'inline-block';
+                                break;
+                                //paintPayLine();
                             }
                         }
-                     
+
                         paintSlot();
-                       console.log(slotTable);
+                        console.log(slotTable);
                         drawRandomRectangle();
                         flagToCheck = false;
                         collisionWithWallEffect(PADDLE_HEIGHT);
@@ -118,7 +115,7 @@ function init()
                         context.clearRect(0, 0, canvas.width, canvas.height);
                         //initializeGame();
                         clearInterval(intrvl);
-                        document.getElementById('btnPlay').style.display='inline-block';
+                        document.getElementById('btnPlay').style.display = 'inline-block';
 
                     }
 
@@ -129,9 +126,9 @@ function init()
                 flagToCheck = true;
 
             }
-                collisionWithWallEffect(0);
+            collisionWithWallEffect(0);
 
-        
+
         },
         15
     );
@@ -145,39 +142,38 @@ function getMousePos(canvas, evt) {
     };
 }
 
-function collisionWithWallEffect( paddleHight)
-{
-        //Craete Ball
-        if (ballX >= 0) {
-            if (ballX+BALL_RADIUS > canvas.width) {
-                ballX = -ballX;
-                // ballY=-ballY;
-            }
-        } 
-
-
-
-        if (ballX <= 0 && ballY >= 0) {
-            moveBall(-ballX, ballY);
-
+function collisionWithWallEffect(paddleHight) {
+    //Craete Ball
+    if (ballX >= 0) {
+        if (ballX + BALL_RADIUS > canvas.width) {
+            ballX = -ballX;
+            // ballY=-ballY;
         }
+    }
 
-        if (ballY+BALL_RADIUS+paddleHight > canvas.height-PADDLE_HEIGHT) {
-            ballY = -ballY;
-        }
 
-        if (ballX <= 0 && ballY <= 0) {
-            moveBall(-ballX, -ballY);
 
-        }
+    if (ballX <= 0 && ballY >= 0) {
+        moveBall(-ballX, ballY);
 
-        if (ballX >= 0 && ballY <= 0) {
-            moveBall(ballX, -ballY);
+    }
 
-        }
-        if (ballX > 0 && ballY > 0) {
-            moveBall(ballX, ballY);
-        }
+    if (ballY + BALL_RADIUS + paddleHight > canvas.height - PADDLE_HEIGHT) {
+        ballY = -ballY;
+    }
+
+    if (ballX <= 0 && ballY <= 0) {
+        moveBall(-ballX, -ballY);
+
+    }
+
+    if (ballX >= 0 && ballY <= 0) {
+        moveBall(ballX, -ballY);
+
+    }
+    if (ballX > 0 && ballY > 0) {
+        moveBall(ballX, ballY);
+    }
 }
 
 
@@ -224,8 +220,8 @@ function movePaddle(x) {
 
 
 function initializeGame() {
-    orderCount=0;
-    document.getElementById('btnPlay').addEventListener('click',playGame);
+    orderCount = 0;
+    document.getElementById('btnPlay').addEventListener('click', playGame);
     canvas = document.getElementById("canvasGame");
     context = canvas.getContext('2d');
 
@@ -234,22 +230,26 @@ function initializeGame() {
     setRandomColor();
     ballColor = taggedcolor;
     paddelStrikeMusic = new sound("assets/bounce.mp3", false);
+
+    if(bgMusic==null)
+    {
     bgMusic = new sound("assets/bg.mp3", true);
+    }
     initConsole();
-    ballX=paddleX+PADDLE_WIDTH/2;
-    ballY=canvas.height-PADDLE_HEIGHT;
-    document.getElementById('btnPlay').style.display='none';
+    ballX = paddleX + PADDLE_WIDTH / 2;
+    ballY = canvas.height - PADDLE_HEIGHT;
+    document.getElementById('btnPlay').style.display = 'none';
 
 
 }
 
-function playGame()
-{
-    document.getElementById('btnPlay').style.display='none';
+function playGame() {
+
+    document.getElementById('btnPlay').style.display = 'none';
     var element = document.body.classList.remove("illumination");
-    slotTable=[];
-    flagToCheck=false;
-    contextSlot.clearRect(0,0,canvasSlot.width,canvasSlot.height);
+    slotTable = [];
+    flagToCheck = false;
+    contextSlot.clearRect(0, 0, canvasSlot.width, canvasSlot.height);
     init();
 
 }
@@ -266,13 +266,13 @@ function setRandomColor() {
 
 function collisionCheck(x, y) {
 
-    
+
     obstacleMap.forEach(function (item) {
         if (x > item.ox && x < item.ox + OBSTACLE_WIDTH) {
             if (y > item.oy && y < item.oy + OBSTACLE_HEIGHT) {
                 item.show = true;
-                item.order=orderCount++;
-console.log(item.card);
+                item.order = orderCount++;
+                console.log(item.card);
 
             }
         }
@@ -298,7 +298,7 @@ function drawRandomRectangle() {
         for (var j = 1; j <= 5; j++) {
 
 
-            var obstacle = { ox: j * 100, oy: i * 70, card: cardMap[count], show: false, order:null };
+            var obstacle = { ox: j * 100, oy: i * 70, card: cardMap[count], show: false, order: null };
             obstacleMap.push(obstacle);
 
             count++;
@@ -392,37 +392,33 @@ function drawImage() {
 function checkForPayline() {
     var PayLine = [];
     var itemObj = {};
-    var maxCount=0;
+    var maxCount = 0;
     var count = 0;
-    var n=5;
+    var n = 5;
     itemObj = { item: slotTable[0], itemCount: 1 };
     for (var i = 0; i < 25; i++) {
- count++;
-       if((i+1)%5==0)
-       {
-           n+=5;
-           PayLine.push(itemObj);
-           i++;
-           itemObj = { item: slotTable[i], itemCount: 1 };
-       }
-        maxCount=1;
-        for(var j=i+1;j<n;j++)
-        {
-            if(slotTable[i]==slotTable[j])
-            {
+        count++;
+        if ((i + 1) % 5 == 0) {
+            n += 5;
+            PayLine.push(itemObj);
+            i++;
+            itemObj = { item: slotTable[i], itemCount: 1 };
+        }
+        maxCount = 1;
+        for (var j = i + 1; j < n; j++) {
+            if (slotTable[i] == slotTable[j]) {
                 maxCount++;
             }
-            if(maxCount>itemObj.itemCount)
-            {
-                itemObj.itemCount=maxCount;
-                itemObj.item=slotTable[j];
-    
+            if (maxCount > itemObj.itemCount) {
+                itemObj.itemCount = maxCount;
+                itemObj.item = slotTable[j];
+
             }
 
         }
-       
-        
-      
+
+
+
     }
 
     console.log(PayLine);
@@ -431,54 +427,48 @@ function checkForPayline() {
 
 
 
-function paintPayLine(PayLine)
-{
-    var winAmout=0;
-    var n=15;var y=0;
-    for(var i=0;i<PayLine.length;i++)
-    { y+=n+OBSTACLE_HEIGHT/2;
-        
-        if(PayLine[i].itemCount>=3)
-        {
-            winAmout+=PayLine[i].item*PayLine[i].itemCount;
+function paintPayLine(PayLine) {
+    var winAmout = 0;
+    var n = 15; var y = 0;
+    for (var i = 0; i < PayLine.length; i++) {
+        y += n + OBSTACLE_HEIGHT / 2;
+
+        if (PayLine[i].itemCount >= 3) {
+            winAmout += PayLine[i].item * PayLine[i].itemCount;
             contextSlot.beginPath();
-            contextSlot.moveTo(35,y);
+            contextSlot.moveTo(35, y);
             contextSlot.lineTo(325, y);
-            contextSlot.strokeStyle="#b90202";
+            contextSlot.strokeStyle = "#b90202";
             contextSlot.lineWidth = 4;
             contextSlot.stroke();
 
         }
-        y+=OBSTACLE_HEIGHT/2;
+        y += OBSTACLE_HEIGHT / 2;
     }
 
     calculateWin(winAmout);
 }
 
 
-function initConsole()
-{
-    credit-=bet;
-    document.getElementById('spanCredit').innerHTML='CREDIT: '+credit;
-    document.getElementById('spanWin').innerHTML='WIN: ' + win;
-    document.getElementById('spanBet').innerHTML='BET: ' + bet;
-   
+function initConsole() {
+    credit -= bet;
+    document.getElementById('spanCredit').innerHTML = 'CREDIT: ' + credit;
+    document.getElementById('spanWin').innerHTML = 'WIN: ' + win;
+    document.getElementById('spanBet').innerHTML = 'BET: ' + bet;
+
 
 }
 
-function calculateWin(winAmout)
-{
-    if(winAmout>0)
-    {
+function calculateWin(winAmout) {
+    if (winAmout > 0) {
         illuminateGame();
     }
-    credit +=winAmout;
-    document.getElementById('spanCredit').innerHTML='CREDIT: '+credit;
-    document.getElementById('spanWin').innerHTML='WIN: ' + winAmout;
-    document.getElementById('spanBet').innerHTML='BET: ' + bet;
-} 
+    credit += winAmout;
+    document.getElementById('spanCredit').innerHTML = 'CREDIT: ' + credit;
+    document.getElementById('spanWin').innerHTML = 'WIN: ' + winAmout;
+    document.getElementById('spanBet').innerHTML = 'BET: ' + bet;
+}
 
-function illuminateGame()
-{
+function illuminateGame() {
     var element = document.body.classList.add("illumination");
 }
